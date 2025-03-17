@@ -250,6 +250,26 @@ function populateTeacherTable(filteredData) {
 		row.insertCell(4).innerText = item.subject; // Добавляем предмет в таблицу преподавателей
 	});
 }
+document.getElementById('notifyButton').addEventListener('click', function() {
+    Notification.requestPermission().then(permission => {
+        if (permission === 'granted') {
+            showNotification();
+        } else {
+            alert('Уведомления не разрешены');
+        }
+    });
+});
+
+function showNotification() {
+    if (!('Notification' in window)) {
+        alert('Ваш браузер не поддерживает уведомления');
+    } else {
+        const notification = new Notification('Уведомление', {
+            body: 'Это тестовое уведомление',
+            icon: 'https://example.com/icon.png' // URL иконки
+        });
+    }
+}
 		
 		
 		
